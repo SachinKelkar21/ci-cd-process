@@ -5,12 +5,12 @@ node{
 	checkout scm
     stage('Build') {
 		echo 'Building....'
-		sh 'make'
+		sh 'mvn clean package'
 	}
 	
 	stage('Test') {
 		echo 'Testing....'
-		sh 'make check || true'
+		sh 'mvn test || true'
 		junit '**/target/*.xml'
 	}
 	stage('Deploy') {
