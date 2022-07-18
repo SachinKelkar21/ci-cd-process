@@ -3,17 +3,10 @@ node{
 	revision which triggered this Pipeline run */
 	echo 'Checking out....'
 	checkout scm
-    stage('Build') {
-		echo 'Building....'
-		sh 'mvn clean package'
-	}
 	
-	stage('Test') {
-		echo 'Testing....'
-		sh 'mvn test || true'
-		junit '**/target/*.xml'
+	docker.image('maven:3.3.3-jdk-8').inside {
+	  echo 'Building....'
+ 	  sh 'mvn -B clean install'
 	}
-	stage('Deploy') {
-		echo 'Deploying....'
-	}
+    
 }
