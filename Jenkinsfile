@@ -12,7 +12,7 @@ node{
   	}
   	stage('Upload Image to DockerHub'){
     	withCredentials([string(credentialsId: 'docker-hub', variable: 'password')]) {
-      		sh "docker login -u shlok2014 -p ${password}"
+      		sh "echo ${password} | docker login -u shlok2014 --password-stdin 	"
     	}
     	sh 'docker push shlok2014/ci-cd-process:1.0.0'
   	}
