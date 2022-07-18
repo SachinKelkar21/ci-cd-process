@@ -7,5 +7,14 @@ node{
     	def mvnHome = tool name: 'maven-3', type: 'maven'
     	sh "${mvnHome}/bin/mvn clean package"
   	}
+  	stage('Build Docker Image'){
+    	sh 'docker build -t shlok2014/ci-cd-process:1.0.0 .'
+  	}
+  	stage('Upload Image to DockerHub'){
+    	withCredentials([string(credentialsId: 'docker-hub', variable: 'password')]) {
+      		sh "docker login -u shlok2014 -p ${password}"
+    	}
+    	sh 'docker push shlok2014/ci-cd-process:1.0.0'
+  	}
     
 }
