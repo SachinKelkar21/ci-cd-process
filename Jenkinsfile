@@ -16,8 +16,11 @@ node{
     	}
     	sh 'docker push shlok2014/ci-cd-process:1.0.0'
   	}
+  	stage('Remove Container'){
+  		sh 'docker ps'
+  	}
   	stage('Deployed Image to Local'){
-  		sh 'docker run -d -p 41003:8082 --name ci-cd-process  shlok2014/ci-cd-process:1.0.0'
+  		sh 'docker run -d -p 41003:8082 shlok2014/ci-cd-process:1.0.0'
   	}	
     stage('Deployed Image to PAAS'){
     
