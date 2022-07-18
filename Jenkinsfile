@@ -23,11 +23,7 @@ node{
   		sh 'docker run -d -p 41003:8082 shlok2014/ci-cd-process:1.0.0'
   	}	
     stage('Deployed Image to PAAS'){
-    
-    	withCredentials([string(credentialsId: 'docker-pwd', variable: 'password')]) {
-    		sh "echo ${password} | heroku login --password-stdin 	"
-    		sh 'mvn clean heroku:deploy'
-		}
-    	
+    	sh 'mvn clean heroku:deploy'
+		
     }
 }
