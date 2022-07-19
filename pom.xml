@@ -47,9 +47,11 @@
 	        	<configuration>
 	        		<appName>ci-cd-process1</appName>
 	        		<processTypes>
-     					<web>java $JAVA_OPTS -cp target/classes:target/dependency/* Main</web>
+     					<web>java $JAVA_OPTS -cp target/classes:target/dependency/* CiCdProcessApplication</web>
   					</processTypes>
+  					
 	        	</configuration>
+	        	
 	      	</plugin>
 		</plugins>
 		
